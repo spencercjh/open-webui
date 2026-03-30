@@ -190,7 +190,7 @@
 			!$config?.features?.enable_automations ||
 			($user?.role !== 'admin' && !($user?.permissions?.features?.automations ?? false))
 		) {
-			goto('/');
+			goto(`${base}/`);
 			return;
 		}
 

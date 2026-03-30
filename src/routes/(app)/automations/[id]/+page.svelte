@@ -22,7 +22,7 @@
 			!$config?.features?.enable_automations ||
 			($user?.role !== 'admin' && !($user?.permissions?.features?.automations ?? false))
 		) {
-			goto('/');
+			goto(`${base}/`);
 			return;
 		}
 
@@ -36,10 +36,10 @@
 				automation = res;
 				loaded = true;
 			} else {
-				goto('/automations');
+				goto(`${base}/automations`);
 			}
 		} else {
-			goto('/automations');
+			goto(`${base}/automations`);
 		}
 	});
 </script>

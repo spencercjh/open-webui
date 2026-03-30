@@ -253,10 +253,10 @@
 				<div class=" self-center truncate">{$i18n.t('Settings')}</div>
 			</button>
 
-			{#if role === 'admin'}
-				<a
-					href="/admin"
-					draggable="false"
+				{#if role === 'admin'}
+					<a
+						href="{base}/admin"
+						draggable="false"
 					class="flex rounded-xl py-1.5 px-3 w-full hover:bg-gray-50 dark:hover:bg-gray-800 transition cursor-pointer select-none"
 					on:click={async (e) => {
 						if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) {
@@ -264,7 +264,7 @@
 						}
 						e.preventDefault();
 						show = false;
-						goto('/admin');
+							goto(`${base}/admin`);
 						if ($mobile) {
 							await tick();
 							showSidebar.set(false);
@@ -303,15 +303,15 @@
 
 			{#if $user?.role === 'admin' || $user?.permissions?.workspace?.models || $user?.permissions?.workspace?.knowledge || $user?.permissions?.workspace?.prompts || $user?.permissions?.workspace?.tools}
 				<div class="flex items-center w-full">
-					<a
-						href="/workspace"
+						<a
+							href="{base}/workspace"
 						draggable="false"
 						class="flex flex-1 rounded-xl py-1.5 px-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition cursor-pointer select-none"
 						on:click={async (e) => {
 							if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
 							e.preventDefault();
 							show = false;
-							goto('/workspace');
+								goto(`${base}/workspace`);
 							if ($mobile) {
 								await tick();
 								showSidebar.set(false);
@@ -360,15 +360,15 @@
 
 			{#if ($config?.features?.enable_notes ?? false) && ($user?.role === 'admin' || ($user?.permissions?.features?.notes ?? true))}
 				<div class="flex items-center w-full">
-					<a
-						href="/notes"
+						<a
+							href="{base}/notes"
 						draggable="false"
 						class="flex flex-1 rounded-xl py-1.5 px-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition cursor-pointer select-none"
 						on:click={async (e) => {
 							if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
 							e.preventDefault();
 							show = false;
-							goto('/notes');
+								goto(`${base}/notes`);
 							if ($mobile) {
 								await tick();
 								showSidebar.set(false);
@@ -404,15 +404,15 @@
 
 			{#if $config?.features?.enable_calendar && ($user?.role === 'admin' || $user?.permissions?.features?.calendar)}
 				<div class="flex items-center w-full">
-					<a
-						href="/calendar"
+						<a
+							href="{base}/calendar"
 						draggable="false"
 						class="flex flex-1 rounded-xl py-1.5 px-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition cursor-pointer select-none"
 						on:click={async (e) => {
 							if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
 							e.preventDefault();
 							show = false;
-							goto('/calendar');
+								goto(`${base}/calendar`);
 						}}
 					>
 						<div class="self-center mr-3">
@@ -457,15 +457,15 @@
 
 			{#if $config?.features?.enable_automations && ($user?.role === 'admin' || $user?.permissions?.features?.automations)}
 				<div class="flex items-center w-full">
-					<a
-						href="/automations"
+						<a
+							href="{base}/automations"
 						draggable="false"
 						class="flex flex-1 rounded-xl py-1.5 px-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition cursor-pointer select-none"
 						on:click={async (e) => {
 							if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
 							e.preventDefault();
 							show = false;
-							goto('/automations');
+								goto(`${base}/automations`);
 							if ($mobile) {
 								await tick();
 								showSidebar.set(false);
@@ -514,15 +514,15 @@
 
 			{#if role === 'admin'}
 				<div class="flex items-center w-full">
-					<a
-						href="/playground"
+						<a
+							href="{base}/playground"
 						draggable="false"
 						class="flex flex-1 rounded-xl py-1.5 px-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition cursor-pointer select-none"
 						on:click={async (e) => {
 							if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
 							e.preventDefault();
 							show = false;
-							goto('/playground');
+								goto(`${base}/playground`);
 							if ($mobile) {
 								await tick();
 								showSidebar.set(false);
@@ -627,7 +627,7 @@
 					user.set(null);
 					localStorage.removeItem('token');
 
-					location.href = res?.redirect_url ?? '/auth';
+					location.href = res?.redirect_url ?? `${base}/auth`;
 					show = false;
 				}}
 			>

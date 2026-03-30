@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	import { getContext } from 'svelte';
 
 	import { models } from '$lib/stores';
@@ -106,11 +107,11 @@
 							src={`${WEBUI_API_BASE_URL}/models/model/profile/image?id=${encodeURIComponent(model.id)}`}
 							alt={model?.name ?? model.id}
 							class="rounded-full size-5 items-center mr-2"
-							loading="lazy"
-							on:error={(e) => {
-								e.currentTarget.src = '/favicon.png';
-							}}
-						/>
+								loading="lazy"
+								on:error={(e) => {
+									e.currentTarget.src = `${base}/static/favicon.png`;
+								}}
+							/>
 						<div class="truncate">
 							{model.name}
 						</div>

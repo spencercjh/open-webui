@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	import dayjs from 'dayjs';
 	import relativeTime from 'dayjs/plugin/relativeTime';
 	import isToday from 'dayjs/plugin/isToday';
@@ -331,11 +332,11 @@
 								src={`${WEBUI_API_BASE_URL}/models/model/profile/image?id=${message.reply_to_message.meta.model_id}`}
 								alt={message.reply_to_message.meta.model_name ??
 									message.reply_to_message.meta.model_id}
-								class="size-4 ml-0.5 rounded-full object-cover"
-								on:error={(e) => {
-									e.currentTarget.src = '/favicon.png';
-								}}
-							/>
+									class="size-4 ml-0.5 rounded-full object-cover"
+									on:error={(e) => {
+										e.currentTarget.src = `${base}/static/favicon.png`;
+									}}
+								/>
 						{:else}
 							<img
 								src={message.reply_to_message.user?.role === 'webhook'
@@ -374,11 +375,11 @@
 							<img
 								src={`${WEBUI_API_BASE_URL}/models/model/profile/image?id=${message.meta.model_id}`}
 								alt={message.meta.model_name ?? message.meta.model_id}
-								class="size-8 translate-y-1 ml-0.5 object-cover rounded-full"
-								on:error={(e) => {
-									e.currentTarget.src = '/favicon.png';
-								}}
-							/>
+									class="size-8 translate-y-1 ml-0.5 object-cover rounded-full"
+									on:error={(e) => {
+										e.currentTarget.src = `${base}/static/favicon.png`;
+									}}
+								/>
 						{:else if message.user?.role === 'webhook'}
 							<ProfileImage
 								src={`${WEBUI_API_BASE_URL}/channels/webhooks/${message.user?.id}/profile/image`}

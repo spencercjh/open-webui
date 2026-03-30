@@ -55,6 +55,7 @@
 	import { getSessionUser, updateUserTimezone, userSignOut } from '$lib/apis/auths';
 	import { getAllTags, getChatList } from '$lib/apis/chats';
 	import { chatCompletion } from '$lib/apis/openai';
+	import { base } from '$app/paths';
 	import {
 		addOpenAIConnection,
 		removeOpenAIConnection,
@@ -121,7 +122,7 @@
 			reconnectionDelay: 1000,
 			reconnectionDelayMax: 5000,
 			randomizationFactor: 0.5,
-			path: '/ws/socket.io',
+			path: `${base}/ws/socket.io`,
 			transports: enableWebsocket ? ['websocket'] : ['polling', 'websocket'],
 			auth: { token: localStorage.token }
 		});
@@ -485,25 +486,25 @@
 						: $i18n.t('Starting in {{count}} minutes', { count: data.minutes_until });
 
 			toast.custom(NotificationToast, {
-				componentProps: {
-					onClick: () => {
-						goto('/calendar');
+					componentProps: {
+						onClick: () => {
+							goto(`${base}/calendar`);
+						},
+						title: data.title,
+						content: timeStr
 					},
-					title: data.title,
-					content: timeStr
-				},
-				duration: 30000,
-				unstyled: true
-			});
+					duration: 30000,
+					unstyled: true
+				});
 
-			if ($isLastActiveTab) {
-				if ($settings?.notificationEnabled ?? false) {
-					new Notification(`${data.title} • Open WebUI`, {
-						body: timeStr,
-						icon: `${WEBUI_BASE_URL}/static/favicon.png`
-					});
+				if ($isLastActiveTab) {
+					if ($settings?.notificationEnabled ?? false) {
+						new Notification(`${data.title} • Open WebUI`, {
+							body: timeStr,
+							icon: `${WEBUI_BASE_URL}/static/favicon.png`
+						});
+					}
 				}
-			}
 			return;
 		}
 
@@ -747,7 +748,7 @@
 				toast.custom(NotificationToast, {
 					componentProps: {
 						onClick: () => {
-							goto(`/channels/${event.channel_id}`);
+							goto(`${base}/channels/${event.channel_id}`);
 						},
 						content: data?.content,
 						title: `${title}`
@@ -774,7 +775,7 @@
 			user.set(null);
 			localStorage.removeItem('token');
 
-			location.href = res?.redirect_url ?? '/auth';
+				location.href = res?.redirect_url ?? `${base}/auth`;
 		}
 	};
 
@@ -790,12 +791,12 @@
 		}
 		if (event.type === 'query' && (event.data?.query || event.data?.files?.length)) {
 			desktopEvent.set(event);
-			await goto('/');
+				await goto(`${base}/`);
 			return;
 		}
 		if (event.type === 'call') {
 			desktopEvent.set(event);
-			await goto('/');
+				await goto(`${base}/`);
 			return;
 		}
 		if (event.type === 'theme:update' && event.data?.theme) {
@@ -1024,7 +1025,7 @@
 			if (error?.authRedirect) {
 				// Forward-auth proxy is redirecting to an external login page.
 				// Full-page navigation lets the browser follow the redirect natively.
-				window.location.href = '/';
+				window.location.href = `${base}/`;
 				return;
 			}
 			console.error('Error loading backend config:', error);
@@ -1089,19 +1090,19 @@
 					} else {
 						// Redirect Invalid Session User to /auth Page
 						localStorage.removeItem('token');
-						await goto(`/auth?redirect=${encodedUrl}`);
+						await goto(`${base}/auth?redirect=${encodedUrl}`);
 					}
 				} else {
 					// Don't redirect if we're already on the auth page
 					// Needed because we pass in tokens from OAuth logins via URL fragments
-					if ($page.url.pathname !== '/auth') {
-						await goto(`/auth?redirect=${encodedUrl}`);
+					if ($page.url.pathname !== `${base}/auth`) {
+						await goto(`${base}/auth?redirect=${encodedUrl}`);
 					}
 				}
 			}
 		} else {
 			// Redirect to /error when Backend Not Detected
-			await goto(`/error`);
+			await goto(`${base}/error`);
 		}
 
 		await tick();
@@ -1170,7 +1171,7 @@
 		rel="search"
 		type="application/opensearchdescription+xml"
 		title={$WEBUI_NAME}
-		href="/opensearch.xml"
+		href="{base}/opensearch.xml"
 		crossorigin="use-credentials"
 	/>
 </svelte:head>
