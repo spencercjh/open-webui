@@ -236,7 +236,7 @@
 						{
 							label: $i18n.t('Create a new note'),
 							onClick: async () => {
-								await goto(`${base}/notes?content=${query}`);
+								await goto(`${base}/notes?content=${encodeURIComponent(query)}`);
 								show = false;
 								onClose();
 							},

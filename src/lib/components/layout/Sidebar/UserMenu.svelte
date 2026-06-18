@@ -2,6 +2,7 @@
 	import { createEventDispatcher, getContext, onMount, tick } from 'svelte';
 
 	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 	import { fade, slide } from 'svelte/transition';
 
 	import { getUsage } from '$lib/apis';

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	import { onMount, onDestroy, getContext } from 'svelte';
 
 	import { toast } from 'svelte-sonner';

@@ -4,6 +4,7 @@
 	import Sortable from 'sortablejs';
 
 	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 	import {
 		user,
 		chats,

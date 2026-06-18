@@ -24,12 +24,14 @@
 			});
 
 			if (!model) {
-				goto(`${base}/workspace/models`);
+				await goto(`${base}/workspace/models`);
+				return;
 			}
 
 			if (!model?.write_access) {
 				toast.error($i18n.t('You do not have permission to edit this model'));
-				goto(`${base}/workspace/models`);
+				await goto(`${base}/workspace/models`);
+				return;
 			}
 		} else {
 			goto(`${base}/workspace/models`);

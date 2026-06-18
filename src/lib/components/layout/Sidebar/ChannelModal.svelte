@@ -122,7 +122,7 @@
 			toast.success($i18n.t('Channel deleted successfully'));
 			onUpdate();
 
-			if ($page.url.pathname === `/channels/${channelId}`) {
+			if ($page.url.pathname === `${base}/channels/${channelId}`) {
 				goto(`${base}/`);
 			}
 		}

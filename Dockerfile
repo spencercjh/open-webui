@@ -207,4 +207,9 @@ ARG BUILD_HASH
 ENV WEBUI_BUILD_VERSION=${BUILD_HASH}
 ENV DOCKER=true
 
+# Default the backend runtime subpath to match the value the frontend was built
+# with. Can still be overridden at runtime with `-e WEBUI_SUBPATH=...`.
+ARG WEBUI_SUBPATH=""
+ENV WEBUI_SUBPATH=${WEBUI_SUBPATH}
+
 CMD [ "bash", "start.sh"]
