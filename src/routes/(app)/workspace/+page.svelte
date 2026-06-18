@@ -10,15 +10,15 @@
 				goto(`${base}/workspace/models`);
 			} else if ($user?.permissions?.workspace?.knowledge) {
 				goto(`${base}/workspace/knowledge`);
-				} else if ($user?.permissions?.workspace?.prompts) {
-					goto(`${base}/workspace/prompts`);
-				} else if ($user?.permissions?.workspace?.tools) {
-					goto(`${base}/workspace/tools`);
-				} else if ($user?.permissions?.workspace?.skills) {
-					goto(`${base}/workspace/skills`);
-				} else {
-					goto(`${base}/`);
-				}
+			} else if ($user?.permissions?.workspace?.prompts) {
+				goto(`${base}/workspace/prompts`);
+			} else if ($user?.permissions?.workspace?.tools) {
+				goto(`${base}/workspace/tools`);
+			} else if ($user?.permissions?.workspace?.skills) {
+				goto(`${base}/workspace/skills`);
+			} else {
+				goto(`${base}/`);
+			}
 		} else {
 			goto(`${base}/workspace/models`);
 		}

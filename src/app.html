@@ -2,7 +2,12 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" type="image/png" href="%sveltekit.assets%/static/favicon.png" crossorigin="use-credentials" />
+		<link
+			rel="icon"
+			type="image/png"
+			href="%sveltekit.assets%/static/favicon.png"
+			crossorigin="use-credentials"
+		/>
 		<link
 			rel="icon"
 			type="image/png"
@@ -16,7 +21,11 @@
 			href="%sveltekit.assets%/static/favicon.svg"
 			crossorigin="use-credentials"
 		/>
-		<link rel="shortcut icon" href="%sveltekit.assets%/static/favicon.ico" crossorigin="use-credentials" />
+		<link
+			rel="shortcut icon"
+			href="%sveltekit.assets%/static/favicon.ico"
+			crossorigin="use-credentials"
+		/>
 		<link
 			rel="apple-touch-icon"
 			sizes="180x180"
@@ -33,7 +42,11 @@
 		<meta name="webui-assets" content="%sveltekit.assets%" />
 
 		<script src="%sveltekit.assets%/static/loader.js" defer crossorigin="use-credentials"></script>
-		<link rel="stylesheet" href="%sveltekit.assets%/static/custom.css" crossorigin="use-credentials" />
+		<link
+			rel="stylesheet"
+			href="%sveltekit.assets%/static/custom.css"
+			crossorigin="use-credentials"
+		/>
 
 		<script>
 			function resizeIframe(obj) {
@@ -105,7 +118,9 @@
 				logo.loading = 'eager';
 				logo.fetchPriority = 'high';
 				const _assetsBase = document.querySelector('meta[name="webui-assets"]')?.content || '';
-				logo.src = isDarkMode ? `${_assetsBase}/static/splash-dark.png` : `${_assetsBase}/static/splash.png`;
+				logo.src = isDarkMode
+					? `${_assetsBase}/static/splash-dark.png`
+					: `${_assetsBase}/static/splash.png`;
 
 				document.addEventListener('DOMContentLoaded', function () {
 					const splash = document.getElementById('splash-screen');

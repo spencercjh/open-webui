@@ -486,25 +486,25 @@
 						: $i18n.t('Starting in {{count}} minutes', { count: data.minutes_until });
 
 			toast.custom(NotificationToast, {
-					componentProps: {
-						onClick: () => {
-							goto(`${base}/calendar`);
-						},
-						title: data.title,
-						content: timeStr
+				componentProps: {
+					onClick: () => {
+						goto(`${base}/calendar`);
 					},
-					duration: 30000,
-					unstyled: true
-				});
+					title: data.title,
+					content: timeStr
+				},
+				duration: 30000,
+				unstyled: true
+			});
 
-				if ($isLastActiveTab) {
-					if ($settings?.notificationEnabled ?? false) {
-						new Notification(`${data.title} • Open WebUI`, {
-							body: timeStr,
-							icon: `${WEBUI_BASE_URL}/static/favicon.png`
-						});
-					}
+			if ($isLastActiveTab) {
+				if ($settings?.notificationEnabled ?? false) {
+					new Notification(`${data.title} • Open WebUI`, {
+						body: timeStr,
+						icon: `${WEBUI_BASE_URL}/static/favicon.png`
+					});
 				}
+			}
 			return;
 		}
 
@@ -775,7 +775,7 @@
 			user.set(null);
 			localStorage.removeItem('token');
 
-				location.href = res?.redirect_url ?? `${base}/auth`;
+			location.href = res?.redirect_url ?? `${base}/auth`;
 		}
 	};
 
@@ -791,12 +791,12 @@
 		}
 		if (event.type === 'query' && (event.data?.query || event.data?.files?.length)) {
 			desktopEvent.set(event);
-				await goto(`${base}/`);
+			await goto(`${base}/`);
 			return;
 		}
 		if (event.type === 'call') {
 			desktopEvent.set(event);
-				await goto(`${base}/`);
+			await goto(`${base}/`);
 			return;
 		}
 		if (event.type === 'theme:update' && event.data?.theme) {
