@@ -774,6 +774,9 @@ if WEBUI_NAME != 'Open WebUI':
 
 WEBUI_FAVICON_URL = 'https://openwebui.com/favicon.png'
 WEBUI_BUILD_HASH = os.getenv('WEBUI_BUILD_HASH', 'dev-build')
+# Optional URL subpath prefix for reverse-proxy deployments (e.g. "/openwebui").
+# Leave empty to serve the app at the root path.
+WEBUI_SUBPATH = os.getenv('WEBUI_SUBPATH', '')
 TRUSTED_SIGNATURE_KEY = os.getenv('TRUSTED_SIGNATURE_KEY', '')
 
 ####################################
