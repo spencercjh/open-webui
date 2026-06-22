@@ -2,6 +2,12 @@ name: Create and publish Docker images with specific build args
 
 on:
   workflow_dispatch:
+    inputs:
+      webui_subpath:
+        description: 'URL subpath to bake into the image (e.g. /openwebui). Leave empty to serve at root.'
+        required: false
+        default: ''
+        type: string
   push:
     branches:
       - main
@@ -125,6 +131,7 @@ jobs:
           sbom: true
           build-args: |
             BUILD_HASH=${{ github.sha }}
+            WEBUI_SUBPATH=${{ inputs.webui_subpath }}
             ${{ matrix.variant.build_args }}
 
       - name: Export digest
