@@ -755,6 +755,7 @@ app = FastAPI(
     lifespan=lifespan,
     root_path=WEBUI_SUBPATH,
 )
+log.info('FastAPI app initialized with root_path=%r (from WEBUI_SUBPATH).', app.root_path)
 
 # Used by readiness checks to gate traffic until startup work is done.
 app.state.startup_complete = False
