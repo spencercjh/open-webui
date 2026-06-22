@@ -117,6 +117,22 @@ jobs:
             prefix=cache-${{ matrix.variant.name }}-${{ matrix.platform.arch }}-
             latest=false
 
+      - name: Validate WEBUI_SUBPATH
+        env:
+          WEBUI_SUBPATH_INPUT: ${{ inputs.webui_subpath }}
+        run: |
+          sub="$WEBUI_SUBPATH_INPUT"
+          if [ -n "$sub" ]; then
+            case "$sub" in
+              /*) ;;
+              *) echo "::error::WEBUI_SUBPATH must start with '/' (got '$sub'); leave empty to serve at root."; exit 1 ;;
+            esac
+            case "$sub" in
+              */) echo "::error::WEBUI_SUBPATH must not end with a trailing '/' (got '$sub'); use e.g. /openwebui."; exit 1 ;;
+            esac
+          fi
+          echo "WEBUI_SUBPATH validated as '${sub:-<root>}'"
+
       - name: Build Docker image
         uses: docker/build-push-action@v5
         id: build
