@@ -117,7 +117,13 @@
 	const DISCONNECT_TOAST_DELAY_MS = 2000;
 
 	const setupSocket = async (enableWebsocket) => {
-		const _socket = io(`${WEBUI_BASE_URL}` || undefined, {
+		// WEBUI_BASE_URL is the SvelteKit base ("/openwebui") under a subpath deploy,
+		// or a full dev URL. socket.io parses the first arg's path as the *namespace*,
+		// so passing the subpath here connects to namespace "/openwebui" (the server
+		// only registers "/" → CONNECT_ERROR "44/openwebui"). Pass the dev origin
+		// as-is, otherwise connect same-origin; the subpath rides only on `path` below.
+		const socketServerUrl = WEBUI_BASE_URL.startsWith('http') ? WEBUI_BASE_URL : undefined;
+		const _socket = io(socketServerUrl, {
 			reconnection: true,
 			reconnectionDelay: 1000,
 			reconnectionDelayMax: 5000,
