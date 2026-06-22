@@ -23,7 +23,14 @@ const config = {
 			fallback: 'index.html'
 		}),
 		paths: {
-			base: WEBUI_BASE_PATH
+			base: WEBUI_BASE_PATH,
+			// Bake absolute, base-prefixed asset URLs instead of runtime-relative ones.
+			// With the default (relative: true) SvelteKit derives `base` from the
+			// document URL and emits relative `%sveltekit.assets%` paths, so static
+			// refs in app.html (e.g. /static/favicon.png) and nested-route asset loads
+			// drop the subpath. A fixed reverse-proxy subpath is always served from
+			// `base`, so absolute paths are correct and route-independent.
+			relative: false
 		},
 		// poll for new version name every 60 seconds (to trigger reload mechanic in +layout.svelte)
 		version: {
