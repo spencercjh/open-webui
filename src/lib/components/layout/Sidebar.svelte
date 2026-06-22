@@ -1220,7 +1220,7 @@
 							{#each $pinnedNotes as note (note.id)}
 								<a
 									class="w-full flex items-center gap-2.5 rounded-xl px-2.5 py-1.5 hover:bg-gray-100 dark:hover:bg-gray-900 transition group text-sm"
-									href={`/notes/${note.id}`}
+									href={`${base}/notes/${note.id}`}
 									on:click={() => {
 										itemClickHandler();
 									}}
