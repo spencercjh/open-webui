@@ -657,7 +657,7 @@
 							<div class="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
 								{#if entry.user}
 									<img
-										src={`/api/v1/users/${entry.user.id}/profile/image`}
+										src={`${base}/api/v1/users/${entry.user.id}/profile/image`}
 										alt={entry.user.name}
 										class="size-3 rounded-full mr-0.5"
 										on:error={(e) => (e.target.src = `${base}/static/user.png`)}

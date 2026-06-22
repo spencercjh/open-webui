@@ -726,7 +726,7 @@
 			await initChannels();
 			showCreateChannel = false;
 			showChannels = true;
-			goto(`/channels/${res.id}`);
+			goto(`${base}/channels/${res.id}`);
 		}
 	}}
 />
@@ -1211,7 +1211,7 @@
 						onAdd={async () => {
 							const note = await createNoteHandler('New Note');
 							if (note) {
-								goto(`/notes/${note.id}`);
+								goto(`${base}/notes/${note.id}`);
 							}
 						}}
 						onAddLabel={$i18n.t('New Note')}

@@ -677,7 +677,7 @@
 																	writeAccess={model.write_access}
 																	editHandler={() => {
 																		goto(
-																			`/workspace/models/edit?id=${encodeURIComponent(model.id)}`
+																			`${base}/workspace/models/edit?id=${encodeURIComponent(model.id)}`
 																		);
 																	}}
 																	shareHandler={() => {

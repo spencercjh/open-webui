@@ -627,7 +627,7 @@
 					) {
 						playingNotificationSound.set(true);
 
-						const audio = new Audio(`/audio/notification.mp3`);
+						const audio = new Audio(`${WEBUI_BASE_URL}/audio/notification.mp3`);
 						audio.play().finally(() => {
 							// Ensure the global state is reset after the sound finishes
 							playingNotificationSound.set(false);
@@ -646,7 +646,7 @@
 					toast.custom(NotificationToast, {
 						componentProps: {
 							onClick: () => {
-								goto(`/c/${event.chat_id}`);
+								goto(`${base}/c/${event.chat_id}`);
 							},
 							content: content,
 							title: displayTitle
@@ -1129,7 +1129,7 @@
 
 			document.getElementById('splash-screen')?.remove();
 
-			const audio = new Audio(`/audio/greeting.mp3`);
+			const audio = new Audio(`${WEBUI_BASE_URL}/audio/greeting.mp3`);
 			const playAudio = () => {
 				audio.play();
 				document.removeEventListener('click', playAudio);

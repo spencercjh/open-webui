@@ -231,7 +231,7 @@
 	on:save={(e) => {
 		getAutomationList();
 		if (e.detail?.id) {
-			goto(`/automations/${e.detail.id}`);
+			goto(`${base}/automations/${e.detail.id}`);
 		}
 	}}
 />
@@ -429,7 +429,7 @@
 									<div class="flex flex-row gap-0.5 self-center">
 										<AutomationMenu
 											editHandler={() => {
-												goto(`/automations/${automation.id}`);
+												goto(`${base}/automations/${automation.id}`);
 											}}
 											runHandler={() => {
 												runNowHandler(automation);
